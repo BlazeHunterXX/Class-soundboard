@@ -7,21 +7,4 @@
      <body>
        <h1>Play sounds imediately whenever you want. Browse through the internent with the most popular sounds. Upload any sound you want instantly.</h1>
      </body>
-</html>
-
-<div class="soundboard-container">
-    <button class="btn" onclick="playSound('cheer')">Applause</button>
-    <audio id="cheer" src="applause.mp3"></audio>
-
-    <button class="btn" onclick="playSound('airhorn')">Airhorn</button>
-    <audio id="airhorn" src="airhorn.mp3"></audio>
-    
-    </div>
-    <script>
-    function playSound(id) {
-        const sound = document.getElementById(id);
-        // This resets the sound to the start if you click it rapidly
-        sound.currentTime = 0; 
-        sound.play();
-    }
-</script>
+  </html/>
