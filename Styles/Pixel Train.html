@@ -1,0 +1,33 @@
+<style>
+  /* 1. Setup the container to match your site's theme */
+  body {
+    margin: 0;
+    overflow: hidden;
+    background: transparent; /* Allows your city background to show through */
+  }
+
+  /* 2. Create the Train Silhouette */
+  .pixel-train {
+    position: absolute;
+    bottom: 10px; /* Adjust to "sit" on your city's balcony or track */
+    width: 120px;
+    height: 30px;
+    background: #0a0a14; /* Deep dark navy/black matching the B-Central theme */
+    box-shadow: 
+      2px -5px 0 #0a0a14, /* Cabin detail */
+      100px -2px 0 #0a0a14; /* Tail detail */
+    
+    /* 3. The Animation - Makes it move */
+    animation: moveTrain 10s linear infinite;
+    image-rendering: pixelated; /* Keeps the edges sharp like pixel art */
+  }
+
+  /* 4. Define the movement loop */
+  @keyframes moveTrain {
+    from { left: -150px; } /* Start off-screen to the left */
+    to { left: 100%; }     /* End off-screen to the right */
+  }
+</style>
+
+<!-- The Train Element -->
+<div class="pixel-train"></div>
