@@ -1,41 +1,43 @@
 <!doctype html>
 <html>
-  <head>
-    <title>Class Soundboard</title>
-    <link rel="icon" type="image/jpeg" href="favicon.jpeg">
-  </head>
-  <body>
-    <style>
-  /* 1. Setup the container to match your site's theme */
-  body {
-    margin: 0;
-    overflow: hidden;
-    background: transparent; /* Allows your city background to show through */
-  }
-
-  /* 2. Create the Train Silhouette */
-  .pixel-train {
-    position: absolute;
-    bottom: 10px; /* Adjust to "sit" on your city's balcony or track */
-    width: 120px;
-    height: 30px;
-    background: #0a0a14; /* Deep dark navy/black matching the B-Central theme */
-    box-shadow: 
-      2px -5px 0 #0a0a14, /* Cabin detail */
-      100px -2px 0 #0a0a14; /* Tail detail */
-    
-    /* 3. The Animation - Makes it move */
-    animation: moveTrain 10s linear infinite;
-    image-rendering: pixelated; /* Keeps the edges sharp like pixel art */
-  }
-
-  /* 4. Define the movement loop */
-  @keyframes moveTrain {
-    from { left: -150px; } /* Start off-screen to the left */
-    to { left: 100%; }     /* End off-screen to the right */
-  }
-</style>
-    <div id="header">
+<head>
+  <title>Class Soundboard</title>
+  <link rel="icon" type="image/jpeg" href="favicon.jpeg">
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #000814;
+      font-family: monospace;
+    }
+    #ui-layer {
+      position: relative;
+      z-index: 10;
+      pointer-events: none;
+      color: #00ff99;
+      text-shadow: 2px 2px 4px #000;
+    }
+    .headerLinks, a {
+      color: #ff00ff;
+      text-decoration: none;
+      pointer-events: auto;
+      margin: 0 10px;
+    }
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+    #train-canvas {
+      z-index: 2;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="ui-layer">
+    <div id="header" style="padding: 20px;">
       <p>
         <a class="headerLinks" href="index.html">Class Soundboard</a>
         <a class="headerLinks" href="Soundboard/index.html">Soundboard</a>
@@ -45,15 +47,13 @@
     <h1 style="text-align: center; font-size: 50px;">Class Soundboard</h1>
     <h3 style="text-align: center">Sounds</h3>
     <h4 style="text-align: center">
-      <p>
-        <a href="Soundboard/index.html">Soundboard</a>
-      </p>
-      <p>
-        <a href="More section/index.html">More Section</a>
-      </p>
-    </h1>
-    <script src="Styles/Pixel_Train.js">
-      <script src="Styles/hacker_scene.js">
-  </body>
-</html>
+      <p><a href="Soundboard/index.html">Soundboard</a></p>
+      <p><a href="More section/index.html">More Section</a></p>
+    </h4>
+  </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+  <script src="Styles/Pixel_Train.js"></script>
+  <script src="Styles/hacker_scene.js"></script>
+</body>
+</html>
