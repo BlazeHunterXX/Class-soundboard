@@ -1,49 +1,48 @@
-const canvas = document.createElement('canvas');
-document.body.appendChild(canvas);
-const ctx = canvas.getContext('2d');
+{
+  const canvas = document.createElement('canvas');
+  canvas.id = "train-canvas";
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
 
-canvas.width = window.innerWidth;
-canvas.height = 200;
-const p = 8; // "Pixel" size
-let xPos = -100; // Starting position (off-screen left)
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 
-// 0: transparent, 1: red, 2: black (wheels), 3: blue (window), 4: dark red (smoke)
-const trainMap = [
-  [0,0,0,0,0,0,0,4,4,4,0,0],
-  [0,0,0,0,0,0,0,1,1,1,0,0],
-  [0,4,0,0,1,1,1,1,3,1,0,0],
-  [1,1,1,1,1,1,1,1,1,1,1,1],
-  [1,1,1,1,1,1,1,1,1,1,1,1],
-  [0,2,2,0,0,2,2,0,0,2,2,0]
-];
+  const p = 8;
+  let xPos = -150;
 
-const colors = ["transparent", "#e63946", "#1d3557", "#a8dadc", "#a01a24"];
+  const trainMap = [
+   ,
+   ,
+   ,
+   ,
+   ,
+   
+  ];
 
-function animate() {
-  // 1. Clear the canvas to prepare for the next frame
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const colors = ["transparent", "#e63946", "#1d3557", "#a8dadc", "#a01a24"];
 
-  // 2. Loop through the grid and draw the train at its current xPos
-  trainMap.forEach((row, y) => {
-    row.forEach((pixel, x) => {
-      if (pixel !== 0) {
-        ctx.fillStyle = colors[pixel];
-        ctx.fillRect(xPos + (x * p), 50 + (y * p), p, p);
-      }
+  function animateTrain() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    trainMap.forEach((row, y) => {
+      row.forEach((pixel, x) => {
+        if (pixel !== 0) {
+          ctx.fillStyle = colors[pixel];
+          ctx.fillRect(xPos + (x * p), (canvas.height - 100) + (y * p), p, p);
+        }
+      });
     });
-  });
 
-  // 3. Move the train position
-  xPos += 2; // Change this number to speed up/slow down
-
-  // 4. Loop back to start if it goes off screen
-  if (xPos > canvas.width) {
-    xPos = -150;
+    xPos += 2;
+    if (xPos > canvas.width) {
+      xPos = -150;
+    }
+    requestAnimationFrame(animateTrain);
   }
 
-  // 5. Tell the browser to call animate() for the next frame
-  requestAnimationFrame(animate);
-}
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
 
-// Start the animation
-animate();
+  animateTrain();
+}
